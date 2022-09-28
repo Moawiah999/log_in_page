@@ -17,8 +17,7 @@ class _Home_pageState extends State<Home_page> {
 
   String youremail = "moawiah@123.com";
   String Password = "1234";
-  TextEditingController myemail = TextEditingController();
-  TextEditingController myPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +39,8 @@ class _Home_pageState extends State<Home_page> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                onSubmitted: (val) {
-                  myemail.text;
+                onSubmitted: (vale) {
+                  vale = youremail;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -53,7 +52,7 @@ class _Home_pageState extends State<Home_page> {
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
                 onSubmitted: (val) {
-                  myPassword.text;
+                  val = Password;
                 },
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -72,7 +71,7 @@ class _Home_pageState extends State<Home_page> {
                 child: const Text('Login'),
                 onPressed: () {
                   setState(() {
-                    if (youremail == myemail && Password == myPassword) {
+                    if (youremail == "moawiah@123.com" && Password == "1234") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
