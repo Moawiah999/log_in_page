@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:lottie/lottie.dart';
@@ -12,15 +13,21 @@ class Home_page extends StatefulWidget {
 }
 
 class _Home_pageState extends State<Home_page> {
-  // Function(String)? whepressed;
-  // Function(String)? whenpressedtow;
-
   String youremail = "moawiah@123.com";
   String Password = "1234";
-
+  final myemail = TextEditingController();
+  final myPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.amber,
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+      ),
       body: Container(
         alignment: Alignment.center,
         child: ListView(
@@ -39,8 +46,9 @@ class _Home_pageState extends State<Home_page> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                onSubmitted: (vale) {
-                  vale = youremail;
+                controller: myemail,
+                onSubmitted: (val) {
+                  val = youremail;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -51,8 +59,9 @@ class _Home_pageState extends State<Home_page> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
-                onSubmitted: (val) {
-                  val = Password;
+                controller: myPassword,
+                onSubmitted: (valtow) {
+                  valtow = Password;
                 },
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -64,30 +73,33 @@ class _Home_pageState extends State<Home_page> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ElevatedButton(
-                child: const Text('Login'),
-                onPressed: () {
-                  setState(() {
-                    if (youremail == "moawiah@123.com" && Password == "1234") {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Application_Screen();
-                          },
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Error in password or email"),
-                        duration: Duration(seconds: 5),
-                      ));
-                    }
-                  });
-                },
+            GestureDetector(
+              child: Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
+                  onPressed: () {
+                    setState(() {
+                      if (youremail == myemail.text &&
+                          Password == myPassword.text) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Application_Screen();
+                            },
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Error in password or email"),
+                          duration: Duration(seconds: 5),
+                        ));
+                      }
+                    });
+                  },
+                ),
               ),
             ),
           ],
